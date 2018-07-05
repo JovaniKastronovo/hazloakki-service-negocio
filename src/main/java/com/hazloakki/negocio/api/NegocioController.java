@@ -1,10 +1,13 @@
 package com.hazloakki.negocio.api;
 
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -33,10 +36,19 @@ public class NegocioController {
 		return cuentaService.guardarNegocio(negocioDto).to();
 	}
 
-	@PostMapping
-	@ResponseStatus(OK)
-	public NegocioDto negocios(@RequestBody NegocioDto cuentaDto) {
-		return cuentaService.obtenerNegocio(cuentaDto).to();
+	@GetMapping("/{id}")
+	public NegocioDto redNegocio(@PathVariable("id") String idNegocio) {
+		return cuentaService.obtenerNegocio(idNegocio).to();
+	}
+	
+	@PutMapping("/{id}")
+	public NegocioDto modificaNegocio(@PathVariable("id") String idNegocio,@RequestBody NegocioDto cuentaDto) {
+		return cuentaService.modificaNegocio(idNegocio, cuentaDto).to();
+	}
+	
+	@DeleteMapping("/{id}")
+	public void borrarNegocio(@PathVariable("id") String idNegocio) {
+		cuentaService.borrarNegocio(idNegocio);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.hazloakki.negocio.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.hazloakki.negocio.entity.NegocioEntity;
 
@@ -12,8 +13,8 @@ import com.hazloakki.negocio.entity.NegocioEntity;
  * HazloAkki para Empresas v.1
  *
  */
-
+@Repository
 public interface NegocioRepository extends JpaRepository<NegocioEntity, String>{
 
-	Optional<NegocioEntity> consultaCuenta(Integer idNegocio);
+	Optional<NegocioEntity> findById(String idNegocio);
 }

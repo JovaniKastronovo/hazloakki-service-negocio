@@ -2,7 +2,6 @@ package com.hazloakki.negocio.api;
 
 import lombok.Getter;
 
-@Getter
 public class NegocioException extends RuntimeException {
 	private final String id;
 
@@ -14,4 +13,9 @@ public class NegocioException extends RuntimeException {
 	public static NegocioException from(String message, String id) {
 		return new NegocioException(message, id);
 	}
+
+	public String getId() {
+		return id;
+	}
+
 }

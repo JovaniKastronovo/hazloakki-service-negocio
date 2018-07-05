@@ -11,5 +11,7 @@ import com.hazloakki.negocio.modelo.NegocioDto;
 public interface NegocioService {
 
 	NegocioEntity guardarNegocio(NegocioDto cuentaDto);
-	NegocioEntity obtenerNegocio(NegocioDto cuentaDto);
+	NegocioEntity obtenerNegocio(String idNegocio);
+	NegocioEntity modificaNegocio(String idNegocio,NegocioDto cuentaDto);
+	void borrarNegocio(String idNegocio);
 }

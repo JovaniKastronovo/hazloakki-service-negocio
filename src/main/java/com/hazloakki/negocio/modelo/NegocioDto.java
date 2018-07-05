@@ -6,7 +6,7 @@ package com.hazloakki.negocio.modelo;
  */
 public class NegocioDto {
 
-	private Integer idNegocio;
+	private String id;
 	private String nombre;
 	private Integer idCategoria;
 	private String email;
@@ -16,7 +16,7 @@ public class NegocioDto {
 	private Double latitud;
 	private Double longitud;
 	private Integer idMetodoPago;
-	private String tipoTarjetCredito;
+	private String tipoTarjetaCredito;
 	private boolean servicioDomicilio;
 	private boolean estacionamiento;
 	private boolean internet;
@@ -24,12 +24,12 @@ public class NegocioDto {
 	private boolean estatus;
 	private boolean modoLlevar;
 
-	public Integer getIdNegocio() {
-		return idNegocio;
+	public String getId() {
+		return id;
 	}
 
-	public void setIdNegocio(Integer idNegocio) {
-		this.idNegocio = idNegocio;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -104,12 +104,12 @@ public class NegocioDto {
 		this.idMetodoPago = idMetodoPago;
 	}
 
-	public String getTipoTarjetCredito() {
-		return tipoTarjetCredito;
+	public String getTipoTarjetaCredito() {
+		return tipoTarjetaCredito;
 	}
 
-	public void setTipoTarjetCredito(String tipoTarjetCredito) {
-		this.tipoTarjetCredito = tipoTarjetCredito;
+	public void setTipoTarjetaCredito(String tipoTarjetaCredito) {
+		this.tipoTarjetaCredito = tipoTarjetaCredito;
 	}
 
 	public boolean isServicioDomicilio() {

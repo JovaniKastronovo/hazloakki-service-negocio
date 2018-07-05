@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.hazloakki.negocio.modelo.NegocioDto;
 
@@ -23,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j // genera log automatico
 @Entity
 @ToString
-@Table(name = "cuenta")
+@Table(name = "negocio")
 public class NegocioEntity implements Serializable {
 
 	/**
@@ -36,8 +40,11 @@ public class NegocioEntity implements Serializable {
 
 	@Version
 	private Long version;
-	@Column(name = "id_negocio")
-	private Integer idNegocio;
+	@Id
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(updatable = false)
+	private String id;
 	private String nombre;
 	@Column(name = "id_categoria")
 	private Integer idCategoria;
@@ -63,48 +70,48 @@ public class NegocioEntity implements Serializable {
 	public static NegocioEntity from(NegocioDto cuentaDto) {
 
 		NegocioEntity negocioEntity = new NegocioEntity();
-			negocioEntity.setIdNegocio(cuentaDto.getIdNegocio());
-			negocioEntity.setNombre(cuentaDto.getNombre());
-			negocioEntity.setIdCategoria(cuentaDto.getIdCategoria());
-			negocioEntity.setEmail(cuentaDto.getEmail());
-			negocioEntity.setDescripcion(cuentaDto.getDescripcion());
-			negocioEntity.setTelefono(cuentaDto.getTelefono());
-			negocioEntity.setDomicilio(cuentaDto.getDomicilio());
-			negocioEntity.setLatitud(cuentaDto.getLatitud());
-			negocioEntity.setLongitud(cuentaDto.getLongitud());
-			negocioEntity.setIdMetodoPago(cuentaDto.getIdMetodoPago());
-			negocioEntity.setTipoTarjetCredito(cuentaDto.getTipoTarjetCredito());
-			negocioEntity.setServicioDomicilio(cuentaDto.isServicioDomicilio());
-			negocioEntity.setEstacionamiento(cuentaDto.isEstacionamiento());
-			negocioEntity.setInternet(cuentaDto.isInternet());
-			negocioEntity.setReservaciones(cuentaDto.isReservaciones());
-			negocioEntity.setModoLlevar(cuentaDto.isModoLlevar());
-			negocioEntity.setEstatus(cuentaDto.isEstatus());
+		negocioEntity.setId(cuentaDto.getId());
+		negocioEntity.setNombre(cuentaDto.getNombre());
+		negocioEntity.setIdCategoria(cuentaDto.getIdCategoria());
+		negocioEntity.setEmail(cuentaDto.getEmail());
+		negocioEntity.setDescripcion(cuentaDto.getDescripcion());
+		negocioEntity.setTelefono(cuentaDto.getTelefono());
+		negocioEntity.setDomicilio(cuentaDto.getDomicilio());
+		negocioEntity.setLatitud(cuentaDto.getLatitud());
+		negocioEntity.setLongitud(cuentaDto.getLongitud());
+		negocioEntity.setIdMetodoPago(cuentaDto.getIdMetodoPago());
+		negocioEntity.setTipoTarjetCredito(cuentaDto.getTipoTarjetaCredito());
+		negocioEntity.setServicioDomicilio(cuentaDto.isServicioDomicilio());
+		negocioEntity.setEstacionamiento(cuentaDto.isEstacionamiento());
+		negocioEntity.setInternet(cuentaDto.isInternet());
+		negocioEntity.setReservaciones(cuentaDto.isReservaciones());
+		negocioEntity.setModoLlevar(cuentaDto.isModoLlevar());
+		negocioEntity.setEstatus(cuentaDto.isEstatus());
 
-		return null;
+		return negocioEntity;
 
 	}
 
 	public NegocioDto to() {
 
 		NegocioDto negocioDto = new NegocioDto();
-			negocioDto.setIdNegocio(getIdNegocio());
-			negocioDto.setNombre(getNombre());
-			negocioDto.setIdCategoria(getIdCategoria());
-			negocioDto.setEmail(getEmail());
-			negocioDto.setDescripcion(getDescripcion());
-			negocioDto.setTelefono(getTelefono());
-			negocioDto.setDomicilio(getDomicilio());
-			negocioDto.setLatitud(getLatitud());
-			negocioDto.setLongitud(getLongitud());
-			negocioDto.setIdMetodoPago(getIdMetodoPago());
-			negocioDto.setTipoTarjetCredito(getTipoTarjetCredito());
-			negocioDto.setServicioDomicilio(isServicioDomicilio());
-			negocioDto.setEstacionamiento(isEstacionamiento());
-			negocioDto.setInternet(isInternet());
-			negocioDto.setReservaciones(isReservaciones());
-			negocioDto.setModoLlevar(isModoLlevar());
-			negocioDto.setEstatus(isEstatus());
+		negocioDto.setId(getId());
+		negocioDto.setNombre(getNombre());
+		negocioDto.setIdCategoria(getIdCategoria());
+		negocioDto.setEmail(getEmail());
+		negocioDto.setDescripcion(getDescripcion());
+		negocioDto.setTelefono(getTelefono());
+		negocioDto.setDomicilio(getDomicilio());
+		negocioDto.setLatitud(getLatitud());
+		negocioDto.setLongitud(getLongitud());
+		negocioDto.setIdMetodoPago(getIdMetodoPago());
+		negocioDto.setTipoTarjetaCredito(getTipoTarjetCredito());
+		negocioDto.setServicioDomicilio(isServicioDomicilio());
+		negocioDto.setEstacionamiento(isEstacionamiento());
+		negocioDto.setInternet(isInternet());
+		negocioDto.setReservaciones(isReservaciones());
+		negocioDto.setModoLlevar(isModoLlevar());
+		negocioDto.setEstatus(isEstatus());
 
 		return negocioDto;
 	}
@@ -117,12 +124,12 @@ public class NegocioEntity implements Serializable {
 		this.version = version;
 	}
 
-	public Integer getIdNegocio() {
-		return idNegocio;
+	public String getId() {
+		return id;
 	}
 
-	public void setIdNegocio(Integer idNegocio) {
-		this.idNegocio = idNegocio;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

@@ -1,6 +1,9 @@
 package com.hazloakki.negocio.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hazloakki.negocio.api.NegocioException;
 import com.hazloakki.negocio.entity.NegocioEntity;
@@ -8,14 +11,18 @@ import com.hazloakki.negocio.modelo.NegocioDto;
 import com.hazloakki.negocio.repository.NegocioRepository;
 
 /**
- * @author Jovani Arzate 2018-07-01 HazloAkki para Empresas v.1
+ * @author Jovani Arzate 
+ * 2018-07-01 
+ * HazloAkki para Empresas v.1
  *
  */
+@Service
 public class NegocioServiceImpl implements NegocioService {
 
 	@Autowired
 	private NegocioRepository negocioRepository;
 
+	@Transactional
 	@Override
 	public NegocioEntity guardarNegocio(NegocioDto negocioDto) {
 		NegocioEntity negocioEntity = NegocioEntity.from(negocioDto);
@@ -23,10 +30,32 @@ public class NegocioServiceImpl implements NegocioService {
 	}
 
 	@Override
-	public NegocioEntity obtenerNegocio(NegocioDto negocioDto) {
-		return negocioRepository.consultaCuenta(negocioDto.getIdNegocio()).orElseThrow(() -> NegocioException
-				.from("No se encontro el negocio : '%s'", String.valueOf(negocioDto.getIdNegocio())));
+	public NegocioEntity obtenerNegocio(String idNegocio) {
+		return negocioRepository.findById(idNegocio)
+				.orElseThrow(() -> NegocioException.from("No se encontro el negocio : " + idNegocio, idNegocio));
 
+	}
+
+	@Transactional
+	@Override
+	public NegocioEntity modificaNegocio(String idNegocio, NegocioDto cuentaDto) {
+
+		NegocioEntity negocioEntity = negocioRepository.findById(idNegocio)
+				.orElseThrow(() -> NegocioException.from("No se encontro el negocio : " + idNegocio, idNegocio));
+
+		negocioEntity = NegocioEntity.from(cuentaDto);
+		negocioEntity.setId(idNegocio);
+
+		return negocioRepository.save(negocioEntity);
+	}
+
+	@Transactional
+	@Override
+	public void borrarNegocio(String idNegocio) {
+		NegocioEntity negocioEntity = negocioRepository.findById(idNegocio)
+				.orElseThrow(() -> NegocioException.from("No se encontro el negocio : " + idNegocio, idNegocio));
+
+		negocioRepository.delete(negocioEntity);
 	}
 
 }
