@@ -2,6 +2,8 @@ package com.hazloakki.negocio.api;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,16 +31,21 @@ public class NegocioController {
 	
 	@Autowired
 	private NegocioService cuentaService;
-
-	@PostMapping
-	@ResponseStatus(CREATED)
-	public NegocioDto crearNegocio(@RequestBody NegocioDto negocioDto) {
-		return cuentaService.guardarNegocio(negocioDto).to();
+	
+	public List<NegocioDto> readAllNegocios(){
+		return null;
 	}
 
 	@GetMapping("/{id}")
 	public NegocioDto redNegocio(@PathVariable("id") String idNegocio) {
 		return cuentaService.obtenerNegocio(idNegocio).to();
+	}
+	
+	
+	@PostMapping
+	@ResponseStatus(CREATED)
+	public NegocioDto crearNegocio(@RequestBody NegocioDto negocioDto) {
+		return cuentaService.guardarNegocio(negocioDto).to();
 	}
 	
 	@PutMapping("/{id}")

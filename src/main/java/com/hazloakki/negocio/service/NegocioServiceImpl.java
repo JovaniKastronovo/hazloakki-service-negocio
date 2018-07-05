@@ -1,5 +1,7 @@
 package com.hazloakki.negocio.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +58,12 @@ public class NegocioServiceImpl implements NegocioService {
 				.orElseThrow(() -> NegocioException.from("No se encontro el negocio : " + idNegocio, idNegocio));
 
 		negocioRepository.delete(negocioEntity);
+	}
+
+	@Override
+	public List<NegocioDto> obtenerAllNegociosByCuenta() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
