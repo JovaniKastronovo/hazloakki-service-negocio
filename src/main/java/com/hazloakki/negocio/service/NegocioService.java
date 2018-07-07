@@ -16,9 +16,13 @@ public interface NegocioService {
 	NegocioEntity obtenerNegocio(String idNegocio);
 	NegocioEntity modificaNegocio(String idNegocio,NegocioDto cuentaDto);
 	void borrarNegocio(String idNegocio);
+<<<<<<< HEAD
 	
 	/*
 	 * Remotos
 	 */
 	List<NegocioEntity> obtenerAllNegociosByCuenta(String idCuenta);
+=======
+	List<NegocioDto> obtenerAllNegociosByCuenta();
+>>>>>>> 25439c6c3f7db68f6fede0434c87b051badcaf3b
 }
