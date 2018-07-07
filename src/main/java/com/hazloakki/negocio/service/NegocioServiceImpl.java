@@ -1,5 +1,7 @@
 package com.hazloakki.negocio.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,7 @@ import com.hazloakki.negocio.modelo.NegocioDto;
 import com.hazloakki.negocio.repository.NegocioRepository;
 
 /**
- * @author Jovani Arzate 
- * 2018-07-01 
- * HazloAkki para Empresas v.1
+ * @author Jovani Arzate 2018-07-01 HazloAkki para Empresas v.1
  *
  */
 @Service
@@ -56,6 +56,12 @@ public class NegocioServiceImpl implements NegocioService {
 				.orElseThrow(() -> NegocioException.from("No se encontro el negocio : " + idNegocio, idNegocio));
 
 		negocioRepository.delete(negocioEntity);
+	}
+
+	@Override
+	public List<NegocioEntity> obtenerAllNegociosByCuenta(String idCuenta) {
+
+		return negocioRepository.findByIdCuentaAndEstatus(idCuenta,Boolean.TRUE);
 	}
 
 }

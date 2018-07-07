@@ -31,6 +31,11 @@ import lombok.extern.slf4j.Slf4j;
 public class NegocioEntity implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Necesario por usar @Builder
 	 */
 	@Tolerate
@@ -45,6 +50,8 @@ public class NegocioEntity implements Serializable {
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Column(updatable = false)
 	private String id;
+	@Column(name = "id_cuenta")
+	private String idCuenta;
 	private String nombre;
 	@Column(name = "id_categoria")
 	private Integer idCategoria;
@@ -258,6 +265,14 @@ public class NegocioEntity implements Serializable {
 
 	public void setModoLlevar(boolean modoLlevar) {
 		this.modoLlevar = modoLlevar;
+	}
+
+	public String getIdCuenta() {
+		return idCuenta;
+	}
+
+	public void setIdCuenta(String idCuenta) {
+		this.idCuenta = idCuenta;
 	}
 
 }

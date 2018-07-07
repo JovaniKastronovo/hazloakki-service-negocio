@@ -2,6 +2,8 @@ package com.hazloakki.negocio.api;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hazloakki.negocio.entity.NegocioEntity;
 import com.hazloakki.negocio.modelo.NegocioDto;
 import com.hazloakki.negocio.service.NegocioService;
 
@@ -50,5 +53,14 @@ public class NegocioController {
 	public void borrarNegocio(@PathVariable("id") String idNegocio) {
 		cuentaService.borrarNegocio(idNegocio);
 	}
+	
+	/*
+	 * Remotos
+	 */
 
+	@GetMapping("/cuenta/{id}")
+	public List<NegocioEntity> redAllNegocios(@PathVariable("id") String idCuenta) {
+		return cuentaService.obtenerAllNegociosByCuenta(idCuenta);
+	}
+	
 }

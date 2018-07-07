@@ -1,5 +1,6 @@
 package com.hazloakki.negocio.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,5 @@ import com.hazloakki.negocio.entity.NegocioEntity;
 public interface NegocioRepository extends JpaRepository<NegocioEntity, String>{
 
 	Optional<NegocioEntity> findById(String idNegocio);
+	List<NegocioEntity> findByIdCuentaAndEstatus(String idCuenta,boolean estatus);
 }

@@ -1,5 +1,7 @@
 package com.hazloakki.negocio.service;
 
+import java.util.List;
+
 import com.hazloakki.negocio.entity.NegocioEntity;
 import com.hazloakki.negocio.modelo.NegocioDto;
 /**
@@ -14,4 +16,9 @@ public interface NegocioService {
 	NegocioEntity obtenerNegocio(String idNegocio);
 	NegocioEntity modificaNegocio(String idNegocio,NegocioDto cuentaDto);
 	void borrarNegocio(String idNegocio);
+	
+	/*
+	 * Remotos
+	 */
+	List<NegocioEntity> obtenerAllNegociosByCuenta(String idCuenta);
 }
