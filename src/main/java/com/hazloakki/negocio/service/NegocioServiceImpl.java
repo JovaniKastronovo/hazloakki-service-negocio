@@ -59,15 +59,10 @@ public class NegocioServiceImpl implements NegocioService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public List<NegocioEntity> obtenerAllNegociosByCuenta(String idCuenta) {
 
 		return negocioRepository.findByIdCuentaAndEstatus(idCuenta,Boolean.TRUE);
-=======
-	public List<NegocioDto> obtenerAllNegociosByCuenta() {
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 25439c6c3f7db68f6fede0434c87b051badcaf3b
 	}
 
 }
