@@ -1,7 +1,5 @@
 package com.hazloakki.negocio.api;
 
-import lombok.Getter;
-
 public class NegocioException extends RuntimeException {
 	private final String id;
 

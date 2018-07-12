@@ -1,0 +1,23 @@
+#https://stackoverflow.com/questions/35845144/how-can-i-create-a-mysql-db-with-docker-compose
+version: '3'
+services:
+  mysql-dev:
+    image: 'mysql:8.0.2'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+    ports:
+      - '3307:3306'
+    volumes:
+      - ./my.conf:/etc/mysql/conf.d/config-file.cnf
+      - ./data:/var/lib/mysql:rw
+  negocio:
+    image: jovaniac/negocio-microservice:0.0.1-snapshot
+    links:
+      - mysql-dev
+    environment:
+      - 'SPRING_DATASOURCE_URL=jdbc:mysql://mysql-dev/test?characterEncoding=latin1'
+    depends_on:
+      - mysql-dev
+    ports:
+      - '8086:8086'

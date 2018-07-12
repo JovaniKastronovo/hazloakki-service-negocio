@@ -13,35 +13,16 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.hazloakki.negocio.modelo.NegocioDto;
 
-import lombok.Builder;
-import lombok.ToString;
-import lombok.experimental.Tolerate;
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author Jovani Arzate 2018-07-01 HazloAkki para Empresas v.1
  *
  */
 
-@Builder // factoria statica para crear instancias
-@Slf4j // genera log automatico
 @Entity
-@ToString
 @Table(name = "negocio")
 public class NegocioEntity implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Necesario por usar @Builder
-	 */
-	@Tolerate
-	public NegocioEntity() {
-
-	}
 
 	@Version
 	private Long version;
