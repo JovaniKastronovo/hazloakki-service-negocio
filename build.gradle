@@ -72,8 +72,9 @@ task createDockerfile(type: com.bmuschko.gradle.docker.tasks.image.Dockerfile) {
   copyFile 'negocio-microservice.jar', '/opt/negocio-microservice.jar'
   instruction {"RUN sh -c 'chmod +x *.sh'"}  
   exposePort 8086
-  entryPoint "/wait-for-it.sh","mysql-dev:3307",  "--", "/start.sh"
-  //entryPoint 'java', "-Djava.awt.headless=true", "-Xms256m", "-Xmx256m", '-jar', '/opt/orderservice.jar'
+  //entryPoint "/wait-for-it.sh","postgres:5433",  "--", "/start.sh"
+  entryPoint "/start.sh"
+  
 }
 
 task buildImage(type: com.bmuschko.gradle.docker.tasks.image.DockerBuildImage) {

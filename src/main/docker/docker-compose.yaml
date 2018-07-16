@@ -9,7 +9,7 @@ services:
       - "5433:5432"
     volumes:
       - ./blockstorage_dev/postgres:/var/lib/postgresql/data
-  cuenta:
+  negocio:
     image: jovaniac/negocio-microservice:0.0.1-snapshot
     links:
       - postgres
